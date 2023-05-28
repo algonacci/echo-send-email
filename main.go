@@ -64,8 +64,7 @@ func sendEmailSMTP(to, subject, message string) error {
 
 	auth := smtp.PlainAuth("", from, password, smtpHost)
 
-	// Compose the email message with HTML formatting and interactive styling
-	msg := "From: " + fromName + " <" + from + ">\n" + // Include sender name
+	msg := "From: " + fromName + " <" + from + ">\n" +
 		"To: " + to + "\n" +
 		"Subject: " + subject + "\n" +
 		"MIME-Version: 1.0\n" +
@@ -84,7 +83,6 @@ func sendEmailSMTP(to, subject, message string) error {
 		"</div>" +
 		"</body></html>"
 
-	// Send the email
 	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, []string{to}, []byte(msg))
 	if err != nil {
 		log.Println("Failed to send email:", err)
